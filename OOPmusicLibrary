@@ -1,0 +1,72 @@
+class Library {
+  constructor(name, creator) {
+    this.name = name;
+    this.creator = creator;
+    this.playlists = [];
+  }
+
+  addPlaylists(playlist) {
+    this.playlists.push(playlist);
+  }
+
+}
+
+
+class Playlists {
+  constructor(name) {
+    this.name = name;
+    this.tracks = [];
+  }
+
+  addTrack(track) {
+    this.tracks.push(track);
+  }
+
+  overallRating() {
+    let overallRating = 0;
+      for (let track of this.tracks) {
+        overallRating += track.rating;
+      }
+    return overallRating / this.tracks.length;
+  }
+
+
+  totalDuration() {
+    let totalDruation = 0;
+      for (let track of this.tracks) {
+        totalDruation += track.length;
+      }
+    return totalDruation;
+  }
+}
+
+
+class Track {
+  constructor(title, rating, length) {
+    this.title = title;
+    this.rating = rating; // array or function
+    this.length = length; // length in seconds
+  }
+
+}
+
+
+
+
+let firstLibrary = new Library("Funk", "The Moon");
+
+let funk = new Playlists("funky");
+firstLibrary.addPlaylists(funk);
+
+let track1 = new Track("a", 4, 100);
+let track2 = new Track("b", 3, 50);
+let track3 = new Track("c", 2, 80);
+
+funk.addTrack(track1);
+funk.addTrack(track2);
+funk.addTrack(track3);
+
+console.log("Library: " , firstLibrary)
+console.log("playlist: " , funk);
+console.log("Overall Rating: " , funk.overallRating());
+console.log("Total Duration: " , funk.totalDuration());
